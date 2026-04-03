@@ -1,73 +1,107 @@
-# React + TypeScript + Vite
+# CESIZen — Back-office Web
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Interface d'administration du projet CESIZen — L'application de votre santé mentale  
+> Bloc 2 — Titre Concepteur Développeur d'Applications (CESI)
 
-Currently, two official plugins are available:
+## Stack technique
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Framework** : React 19
+- **Build** : Vite 8
+- **Routing** : React Router DOM 7
+- **Data fetching** : TanStack Query (React Query) 5
+- **HTTP** : Axios
+- **Langage** : TypeScript
 
-## React Compiler
+## Prérequis
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Node.js >= 18
+- npm
+- L'API CESIZen doit tourner (voir [CESIZENAPI](https://github.com/Plabou102/CESIZENAPI))
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```bash
+# 1. Cloner le dépôt
+git clone https://github.com/Plabou102/CESIZENReact
+cd CESIZENReact
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# 2. Installer les dépendances
+npm install
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# 3. Configurer les variables d'environnement
+cp .env.example .env
+# Remplir les valeurs dans .env
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Variables d'environnement
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Créer un fichier `.env` à la racine :
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```env
+VITE_API_URL=http://localhost:3001
 ```
+
+## Lancement
+
+```bash
+# Développement
+npm run dev
+```
+
+L'application tourne sur **http://localhost:5173**
+
+## Build production
+
+```bash
+npm run build
+npm run preview
+```
+
+## Fonctionnalités
+
+### Authentification
+- Connexion sécurisée avec JWT
+- Redirection automatique si non connecté
+- Déconnexion avec invalidation du token
+
+### Gestion des utilisateurs
+- Liste de tous les comptes (utilisateurs et admins)
+- Création, modification, désactivation et suppression
+- Affichage du rôle et du statut de chaque compte
+
+### Gestion des informations
+- CRUD complet des pages d'information
+- Activation / désactivation de la visibilité publique
+- Filtrage par catégorie
+
+### Gestion des exercices de respiration
+- Création et configuration des exercices de cohérence cardiaque
+- Paramétrage des durées : inspiration, apnée, expiration
+- Activation / désactivation des exercices
+
+## Structure du projet
+
+```
+src/
+├── assets/             # Logos et images
+├── components/
+│   ├── auth/           # Routes protégées
+│   └── layout/         # AdminLayout (sidebar + topbar)
+├── hooks/
+│   └── auth/           # useLogin, useLogout, useMe
+├── pages/
+│   ├── auth/           # LoginPage
+│   ├── dashboard/      # DashboardPage
+│   ├── users/          # UsersPage
+│   ├── informations/   # InformationsPage
+│   └── breathingExercises/ # BreathingExercisesPage
+├── services/
+│   └── api/            # Appels API (axios)
+├── styles/
+│   └── global.css      # Système de design CESIZen
+└── types/              # Types TypeScript
+```
+
+## Auteur
+
+Adame Boussaida — Projet CDA CESI 2025/2026
