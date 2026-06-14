@@ -15,10 +15,6 @@ jobs:
           - CESIZENReact
           - CESIZENAPI
 
-    defaults:
-      run:
-        working-directory: ${{ matrix.project }}
-
     steps:
       - name: Checkout React
         uses: actions/checkout@v6
@@ -35,9 +31,16 @@ jobs:
           cache-dependency-path: ${{ matrix.project }}/package-lock.json
 
       - run: npm ci
+        working-directory: ${{ matrix.project }}
+
       - run: npm run build --if-present
+        working-directory: ${{ matrix.project }}
+
       - run: npm run lint --if-present
+        working-directory: ${{ matrix.project }}
+
       - run: npm test --if-present
+        working-directory: ${{ matrix.project }}
 
   audit:
     runs-on: ubuntu-latest
@@ -49,10 +52,6 @@ jobs:
           - CESIZENReact
           - CESIZENAPI
 
-    defaults:
-      run:
-        working-directory: ${{ matrix.project }}
-
     steps:
       - name: Checkout React
         uses: actions/checkout@v6
@@ -69,7 +68,10 @@ jobs:
           cache-dependency-path: ${{ matrix.project }}/package-lock.json
 
       - run: npm ci
+        working-directory: ${{ matrix.project }}
+
       - run: npm audit --audit-level=high
+        working-directory: ${{ matrix.project }}
 
   super-linter:
     runs-on: ubuntu-latest
