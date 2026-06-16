@@ -1,6 +1,6 @@
 # CESIZen — Back-office Web
 
-![CI](https://github.com/Plabou102/CESIZENAPI/actions/workflows/notify-deploy.yml/badge.svg)
+[![Notify Deploy](https://github.com/Plabou102/CESIZENReact/actions/workflows/notify-deploy.yml/badge.svg)](https://github.com/Plabou102/CESIZENReact/actions/workflows/notify-deploy.yml)
 
 Backend Express / Prisma du projet CESIZEN.
 
