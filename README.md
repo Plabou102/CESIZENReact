@@ -1,5 +1,9 @@
 # CESIZen — Back-office Web
 
+![CI](https://github.com/Plabou102/CESIZENAPI/actions/workflows/notify-deploy.yml/badge.svg)
+
+Backend Express / Prisma du projet CESIZEN.
+
 > Interface d'administration du projet CESIZen — L'application de votre santé mentale  
 > Bloc 2 — Titre Concepteur Développeur d'Applications (CESI)
 
