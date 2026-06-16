@@ -1,5 +1,4 @@
-cat > Dockerfile << 'EOF'
-FROM node:24-alpine AS builder
+FROM node:24-alpine
 
 WORKDIR /app
 
@@ -7,21 +6,7 @@ COPY package*.json ./
 RUN npm ci
 
 COPY . .
-RUN npm run build
 
-FROM node:24-alpine
+EXPOSE 3001
 
-WORKDIR /app
-
-RUN npm install -g serve
-
-COPY --from=builder /app/dist ./dist
-
-EXPOSE 5173
-
-CMD ["serve", "-s", "dist", "-l", "5173"]
-EOF
-
-git add Dockerfile
-git commit -m "feat(docker): add Dockerfile"
-git push
+CMD ["npx", "tsx", "src/app.ts"]
