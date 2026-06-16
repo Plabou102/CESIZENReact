@@ -24,7 +24,7 @@ export default function LoginPage() {
     } catch (error: any) {
       let message = "Connexion impossible";
       if (!navigator.onLine) message = "Le navigateur est hors ligne";
-      else if (!error?.response && error?.code === "ERR_NETWORK") message = "Requête bloquée avant réponse serveur";
+      else if (!error?.response && error?.code === "ERR_NETWORK") message = "Requete bloquée avant réponse serveur";
       else if (!error?.response) message = "Aucune réponse HTTP reçue";
       else if (error.response.status === 400) message = error.response.data?.error || "Requête invalide";
       else if (error.response.status === 401) message = error.response.data?.error || "Identifiants invalides";
