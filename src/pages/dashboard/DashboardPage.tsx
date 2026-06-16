@@ -44,7 +44,7 @@ export default function DashboardPage() {
       <div className="page-header">
         <div>
           <h1 className="page-title">
-            {greeting}{user?.firstName ? `, ${user.firstName}` : ""} 👋
+            {greeting}{user?.firstName ? `, ${user.firstName}` : ""} 
           </h1>
           <p className="page-subtitle">
             Bienvenue dans le back-office CESIZen. Que souhaitez-vous gérer ?
