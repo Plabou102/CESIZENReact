@@ -54,7 +54,7 @@ export default function LoginPage() {
       {/* ── Right panel ── */}
       <div className="login-right">
         <div className="login-form-wrap">
-          <h1 className="login-heading">Espaca administrateur</h1>
+          <h1 className="login-heading">Espace administrateur</h1>
           <p className="login-subheading">Connectez-vous pour accéder au back-office.</p>
 
           <form className="login-form" onSubmit={handleSubmit}>
