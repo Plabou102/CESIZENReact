@@ -2,7 +2,7 @@ name: Notify Deploy
 
 on:
   push:
-    branches: [main]
+    branches: [main, develop]
 
 jobs:
   notify:
@@ -14,4 +14,4 @@ jobs:
             -H "Authorization: token ${{ secrets.GH_PAT }}" \
             -H "Accept: application/vnd.github.v3+json" \
             https://api.github.com/repos/Plabou102/CESIZENdeploy/dispatches \
-            -d '{"event_type":"react-updated"}'
+            -d '{"event_type":"api-updated","client_payload":{"message":"${{ github.event.head_commit.message }}","sha":"${{ github.sha }}","actor":"${{ github.actor }}"}}'
