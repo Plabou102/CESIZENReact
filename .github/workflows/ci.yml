@@ -47,7 +47,7 @@ jobs:
       - name: Security audit
         run: npm audit --audit-level=critical
 
-gitleaks:
+  gitleaks:
     name: Gitleaks - Secret scan
     runs-on: ubuntu-latest
     permissions:
@@ -65,7 +65,7 @@ gitleaks:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-notify-deploy:
+  notify-deploy:
     runs-on: ubuntu-latest
     needs: [build-lint-test, audit, gitleaks]
     if: github.ref == 'refs/heads/main'
