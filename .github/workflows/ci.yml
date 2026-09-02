@@ -47,9 +47,12 @@ jobs:
       - name: Security audit
         run: npm audit --audit-level=critical
 
-  gitleaks:
+gitleaks:
     name: Gitleaks - Secret scan
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
 
     steps:
       - name: Checkout
@@ -74,4 +77,4 @@ jobs:
             -H "Authorization: token ${{ secrets.GH_PAT }}" \
             -H "Accept: application/vnd.github.v3+json" \
             https://api.github.com/repos/Plabou102/CESIZENdeploy/dispatches \
-            -d '{"event_type":"react-updated","client_payload":{"message":"${{ github.event.head_commit.message }}","sha":"${{ github.sha }}","actor":"${{ github.actor }}"}}'
+            -d '{"event_type":"react-updated"}'
